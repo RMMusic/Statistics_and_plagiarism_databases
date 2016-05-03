@@ -23,7 +23,7 @@ class Controller extends BaseController
             Cache::forget($option->key);
 
             Cache::put($option->key, $option->value, 100);
-            dd(Cache::get('title'));
+
 //            Cache::put($option->key, !empty($option->getOptionsValue->first()->value) ?
 //            $option->getOptionsValue->first()->value : $option->defaultValue, 100);
         }

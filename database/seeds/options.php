@@ -13,17 +13,17 @@ class options extends Seeder
     {
         \App\Options::create([
             'key' => 'title',
-            'name' => 'Назва клубу',
-            'description' => 'Введіть назву клубу',
+            'name' => 'Your title',
+            'description' => 'Enter your title',
             'tag' => 'options-input',
-            'value' => 'Stat',
+            'value' => 'Your title',
             'group' => '0',
             'columns' => '4',
         ]);
         \App\Options::create([
             'key' => 'themes',
-            'name' => 'Кольорова тема',
-            'description' => 'Вибір кольорової схеми',
+            'name' => 'Color theme',
+            'description' => 'Change color theme',
             'tag' => 'options-select',
             'value' => 'skin-blue',
             'options' => '[
