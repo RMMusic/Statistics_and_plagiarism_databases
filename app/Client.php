@@ -16,7 +16,14 @@ class Client extends Model
     protected $softDelete = true;
 
     protected $fillable = [
-        'name', 'phone', 'photo', 'birthday', 'detail', 'note', 'status_id', 'enabled'
+        'name', 
+        'phone', 
+        'photo', 
+        'birthday', 
+        'detail', 
+        'note', 
+        'status_id', 
+        'enabled'
     ];
 
     public function getNameStatus()

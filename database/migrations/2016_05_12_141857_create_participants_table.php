@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStatisticsWorkResultsTable extends Migration
+class CreateParticipantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreateStatisticsWorkResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statistics_result_types', function (Blueprint $table) {
+        Schema::create('participants', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('result_types');
+            $table->string('names');
+            $table->integer('phones')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +28,6 @@ class CreateStatisticsWorkResultsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('statistics_work_results');
+        Schema::drop('participants');
     }
 }

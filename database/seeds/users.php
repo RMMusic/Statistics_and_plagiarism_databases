@@ -16,7 +16,6 @@ class users extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
             'confirmed' => 1,
-            'api_token' => str_random(60),
             'confirmation_code' => md5(microtime() . env('APP_KEY')),
         ]);
     }

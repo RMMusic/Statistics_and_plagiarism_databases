@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlagiarismWorkTypesTable extends Migration
+class CreateWorkTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreatePlagiarismWorkTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plagiarism_work_types', function (Blueprint $table) {
+        Schema::create('work_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('work_types');
+            $table->string('names');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +27,6 @@ class CreatePlagiarismWorkTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('plagiarism_work_types');
+        Schema::drop('work_types');
     }
 }
