@@ -39,10 +39,14 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/', 'HomeController@index');
         Route::post('/', 'SearchController@index');
 
-        #lists
+        #statistics
         Route::get('lists/statistics', 'StatisticsController@index');
         Route::get('lists/statistics/data', 'StatisticsController@data');
+        Route::get('lists/statistics/create', 'StatisticsController@create');
+
+        #plagiarism
         Route::get('lists/plagiarism', 'PlagiarismController@index');
+        Route::get('lists/plagiarism/data', 'PlagiarismController@data');
 
         #System options
         Route::post('options/save', 'OptionsController@save');

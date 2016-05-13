@@ -2,34 +2,41 @@
 @section('custom-style')
     <link rel="stylesheet" href="{{ asset ("/bower_components/AdminLTE/plugins/iCheck/all.css") }}">
 @stop
+
 {{-- Content --}}
 @section('content')
-    {!! Form::open(array('url' => '/options/save', 'method' => 'post', 'files' => true)) !!}
-            @foreach($optionsGroupArray as $optionArray)
+    <div class="bottom-menu-header">
+        <h3>
+            Плагіат
+        </h3>
+    </div>
 
-                <div class="row bottom-menu-header">
-                @foreach($optionArray as $option)
-                    @if (isset($option->tag))
-                        <div class="col-md-{{$option->columns}}">
-                            @include('system_options.inputs.'.$option->tag)
-                        </div>
-                    @endif
-            @endforeach
-                </div>
-        @endforeach
-        <input type="submit">
-        <p></p>
-    {!! Form::close() !!}
+    <table id="table2" class="table table-bordered table-hover dataTable"
+           data-global-search="true"
+           data-paging="true"
+           data-info="true"
+           data-length-change="true"
+           data-ajax="/lists/plagiarism/data"
+           data-page-length="25">
+        <thead>
+        <tr>
+            <th data-sortable="true" data-filterable="text">Ім'я</th>
+            <th data-sortable="true" data-filterable="text">Тема</th>
+            <th data-sortable="true" data-filterable="text">Дата початку</th>
+            <th data-sortable="true" data-filterable="text">% плагіату</th>
+            <th data-sortable="true" data-filterable="text">% помилок</th>
+            <th data-sortable="true" data-filterable="text">Дата закінчення</th>
+            <th>Коментарі</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 @stop
+
 {{-- Scripts --}}
 @section('custom-scripts')
-    <script src="{{ asset ("/bower_components/AdminLTE/plugins/iCheck/icheck.js") }}" type="text/javascript"></script>
+    <script src="{{ asset('js/dataTablesSelect.js') }}"></script>
     <script>
-        $(document).ready(function(){
-            $('.checkbox-options').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_flat'
-            });
-        });
+        $('#table2').dataTableHelper();
     </script>
 @stop

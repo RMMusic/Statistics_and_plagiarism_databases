@@ -16,6 +16,7 @@ class CreateWorksTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('participant_id')->nullable();
             $table->foreign('participant_id')->references('id')->on('participants');
+            $table->string('work_them')->nullable();
             $table->unsignedInteger('job_type_id')->nullable();
             $table->foreign('job_type_id')->references('id')->on('job_types');
             $table->date('start_date');
@@ -26,7 +27,7 @@ class CreateWorksTable extends Migration
             $table->foreign('work_status_id')->references('id')->on('work_status');
             $table->integer('plagiarism_percent')->nullable();
             $table->integer('errors_percent')->nullable();
-            $table->string('comments')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

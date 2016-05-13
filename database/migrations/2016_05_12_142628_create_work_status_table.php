@@ -14,7 +14,7 @@ class CreateWorkStatusTable extends Migration
     {
         Schema::create('work_status', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('names');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });

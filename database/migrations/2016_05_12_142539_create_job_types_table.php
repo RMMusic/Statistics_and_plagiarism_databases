@@ -14,7 +14,7 @@ class CreateJobTypesTable extends Migration
     {
         Schema::create('job_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('names');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });

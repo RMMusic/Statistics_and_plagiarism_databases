@@ -7,7 +7,13 @@
 @section('content')
     <div class="bottom-menu-header">
         <h3>
-            Статистика, список
+            Статистика
+            <div class="pull-right">
+                <div class="pull-right">
+                    <a href="/lists/statistics/create"
+                       class="btn btn-sm  btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Додати</a>
+                </div>
+            </div>
         </h3>
     </div>
 
@@ -21,13 +27,12 @@
         <thead>
         <tr>
             <th data-sortable="true" data-filterable="text">Ім'я</th>
-            {{--<th data-sortable="true" data-filterable="text">Телефон</th>--}}
+            <th data-sortable="true" data-filterable="text">Тема</th>
             <th data-sortable="true" data-filterable="text">Дата початку</th>
             <th data-sortable="true" data-filterable="select">Вид роботи</th>
             <th data-sortable="true" data-filterable="select">Результат</th>
             <th data-sortable="true" data-filterable="text">Дата закінчення</th>
             <th>Коментарі</th>
-            {{--<th >Дія</th>--}}
         </tr>
         </thead>
         <tbody></tbody>

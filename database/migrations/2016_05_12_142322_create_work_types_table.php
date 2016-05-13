@@ -14,7 +14,7 @@ class CreateWorkTypesTable extends Migration
     {
         Schema::create('work_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('names');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
