@@ -15,6 +15,7 @@ class CreateParticipantsTable extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('email')->nullable();
             $table->integer('phone')->nullable();
             $table->timestamps();
             $table->softDeletes();

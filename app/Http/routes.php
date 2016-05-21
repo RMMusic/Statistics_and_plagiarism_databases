@@ -32,12 +32,18 @@ header('Access-Control-Allow-Headers:Origin, Content-Type, Accept, Authorization
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::get('/authorize', 'Auth\AuthController@handleProviderCallback');
-
-//    Route::get('/changeChapters/{id}', 'Controller@setChapter');
     Route::group(['middleware' => 'auth'], function () {
 
+        #HOME
         Route::get('/', 'HomeController@index');
+        
+        #participant
         Route::post('/', 'SearchController@index');
+        Route::post('/search', 'ParticipantController@search');
+        Route::post('lists/participant/store', 'ParticipantController@store');
+        Route::get('lists/participant', 'ParticipantController@index');
+        Route::get('lists/participant/data', 'ParticipantController@data');
+        Route::get('lists/participant/create', 'ParticipantController@create');
 
         #statistics
         Route::get('lists/statistics', 'StatisticsController@index');
@@ -48,16 +54,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('lists/plagiarism', 'PlagiarismController@index');
         Route::get('lists/plagiarism/data', 'PlagiarismController@data');
 
-        #System options
+        #system options
         Route::post('options/save', 'OptionsController@save');
         Route::resource('options/', 'OptionsController');
     });
 
-});
-
-Route::group(['middleware' => ['api'],'prefix' => 'api'], function () {
-    Route::post('login', 'APIController@login');
-    Route::group(['middleware' => 'jwt-auth'], function () {
-        Route::post('get_user_details', 'APIController@get_user_details');
-    });
 });

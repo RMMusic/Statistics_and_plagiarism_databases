@@ -32,7 +32,7 @@ class WorkModel extends Model
      */
     public function getParticipant()
     {
-        return $this->hasOne('App\ParticipantsModel', 'id', 'participant_id');
+        return $this->hasOne('App\ParticipantModel', 'id', 'participant_id');
     }
 
     /**
@@ -42,7 +42,7 @@ class WorkModel extends Model
      */
     public function getJobType()
     {
-        return $this->hasOne('App\ParticipantsModel', 'id', 'job_type_id');
+        return $this->hasOne('App\ParticipantModel', 'id', 'job_type_id');
     }
 
     public function getWorkType()

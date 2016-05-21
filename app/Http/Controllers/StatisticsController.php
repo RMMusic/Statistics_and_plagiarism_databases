@@ -15,15 +15,15 @@ class StatisticsController extends Controller
     public function index()
     {
 //        $work = WorkModel::all()->first();
-//        dd(WorkModel::get()->first()->getWorkType->name);
         return view('lists.statistics.index');
     }
 
     public function create()
     {
+        $jobTypeId = WorkModel::STATISTICS_ID;
         $workType = WorkTypeModel::all();
         $workStatus = WorkStatusModel::all();
-        return view('lists.statistics.create_edit', compact('workType','workStatus'));
+        return view('lists.statistics.create_edit', compact('workType','workStatus', 'jobTypeId'));
     }
 
     public function data()

@@ -13,32 +13,30 @@
     </div>
 
     @if (isset($services))
-    {!! Form::model($services, array('url' => URL::to('services') . '/' . $services->id, 'method' => 'PUT', 'class' => 'bf', 'files'=> true)) !!}
+    {!! Form::model($services, array('url' => URL::to('lists/statistics') . '/' . $services->id, 'method' => 'PUT', 'class' => 'bf', 'files'=> true)) !!}
     @else
-    {!! Form::open(array('url' => URL::to('services'), 'method' => 'UPDATE', 'class' => 'bf', 'files'=> true)) !!}
+    {!! Form::open(array('url' => URL::to('lists/statistics'), 'method' => 'UPDATE', 'class' => 'bf', 'files'=> false)) !!}
     @endif
             <!-- Tabs Content -->
     <div class="tab-content row">
         <!-- General tab -->
         <div class="col-xs-12 tab-pane active" id="tab-general">
 
-            {{--<div class="form-group  {{ $errors->has('name') ? 'has-error' : '' }}">--}}
-                {{--{!! Form::label('name', 'Назва сервісу', array('class' => 'control-label')) !!}--}}
-                {{--<div class="controls">--}}
-                    {{--{!! Form::text('name', null, array('class' => 'form-control')) !!}--}}
-                    {{--<span class="help-block">{{ $errors->first('name', ':message') }}</span>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            <div class="form-group  {{ $errors->has('name') ? 'has-error' : '' }}">
+                {!! Form::label('name', 'Ім\'я', array('class' => 'control-label')) !!}
+                <div class="controls">
+                    {!! Form::text('name', null, array('class' => 'form-control')) !!}
+                    <span class="help-block">{{ $errors->first('name', ':message') }}</span>
+                </div>
+            </div>
 
             <div class="form-group  {{ $errors->has('phone') ? 'has-error' : '' }}">
                 {!! Form::label('phone', 'Телефон', array('class' => 'control-label')) !!}
-
                 <div class="input-group">
                     <div class="input-group-addon {{ $errors->has('phone') ? 'has-error' : '' }}">
                         <i class="fa fa-phone"></i>
                     </div>
                     {!! Form::text('phone', null, array('class' => 'form-control','data-inputmask'=>'\'mask\': \'(999) 999-99-99\'','data-mask'=>'')) !!}
-
                 </div>
                 <span class="help-block">{{ $errors->first('phone', ':message') }}</span>
             </div>
@@ -90,6 +88,9 @@
             </div>
 
         </div>
+
+        <input type="hidden" name="job-type" value="{{$jobTypeId}}">
+
         <div class="form-group">
             <div class="col-md-12">
                 <button type="reset" class="btn btn-sm btn-default">
