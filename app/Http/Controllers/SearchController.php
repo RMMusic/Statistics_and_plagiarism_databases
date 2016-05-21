@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Search;
+use App\ParticipantModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -14,18 +15,10 @@ class SearchController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function search(Request $request)
+    public function participantSearch(Request $request)
     {
-        $search = new Search($request->search);
-        $html = $search->searchResult();
-        return $html;
-//        return view('home');
+        $result = json_decode(ParticipantModel::where('name', 'like', '%' . $request->q . '%')->select('id', 'name')->get());
+        return $result;
     }
-
-//    public function graph()
-//    {
-//        $modelEvents = new GetAllCalendarsModel();
-//        $trainings = $modelEvents->getAllTrainingThisDay();
-//        return view('search.ajax-graph',compact('trainings'));
-//    }
+    
 }

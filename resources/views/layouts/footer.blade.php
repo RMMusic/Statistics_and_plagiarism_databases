@@ -4,7 +4,7 @@
         The database of scientific works TSMU
     </div>
     <!-- Default to the left -->
-    <strong>Copyright © 2016 <a href="#">RM_Music</a>.</strong> All rights reserved.
+    <strong>Copyright © 2016 <a href="https://ua.linkedin.com/in/ruslan-miskiv-912343b4" target="_blank">RM_Music</a>.</strong> All rights reserved.
 </footer>
 
 <!-- Default bootstrap modal example -->

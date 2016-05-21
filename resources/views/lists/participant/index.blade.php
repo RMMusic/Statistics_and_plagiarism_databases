@@ -27,7 +27,7 @@
         <thead>
         <tr>
             <th data-sortable="true" data-filterable="text">Ім'я</th>
-            <th data-sortable="true" data-filterable="text">Мило господарське 72%</th>
+            <th data-sortable="true" data-filterable="text">Пошта</th>
             <th data-sortable="true" data-filterable="text">Телефон</th>
             <th>Змінити</th>
         </tr>

@@ -41,8 +41,8 @@ class ParticipantController extends Controller
         try
         {
             $participant = $request->except('_token');
-            ParticipantModel::create(
-                ['name' => $participant['name'],
+            ParticipantModel::create([
+                'name' => $participant['name'],
                 'email' => $participant['email'],
                 'phone' => $participant['phone']
                 ]);
@@ -51,7 +51,7 @@ class ParticipantController extends Controller
             return view('exceptions.msg')->with('msg', ' Учасника не збережено');
         }
 
-        return redirect('/lists.participant');
+        return redirect('/lists/participant');
     }
 
     /**
@@ -73,7 +73,7 @@ class ParticipantController extends Controller
      */
     public function edit($id)
     {
-        dd($participant = ParticipantModel::all());
+        $participant = ParticipantModel::find($id);
         return view('lists.participant.create_edit', compact('participant'));
     }
 
@@ -86,7 +86,17 @@ class ParticipantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request);
+        try
+        {
+            $services = ParticipantModel::find($id);
+            $services->update($request->toArray());
+        }
+        catch(\Exception $e) {
+            return view('exceptions.msg')->with('msg', ' Зміни не збережено');
+        }
+
+        return redirect('/lists/participant');
     }
 
     /**
@@ -100,15 +110,6 @@ class ParticipantController extends Controller
         //
     }
 
-    /**
-     * 
-     */
-    public function search(Request $request)
-    {
-//        dd($request->q);
-        return '[{"id":2131,"text":"LOL"},{"id":5427176,"text":"WORLD"}]';
-    }
-
     public function data()
     {
         $participant = ParticipantModel::select(
@@ -119,7 +120,7 @@ class ParticipantController extends Controller
         )->get();
         return Datatables::of($participant)
             ->add_column('actions',
-                '<a href="{{ URL::to(\'services/\' . $id . \'/edit\' ) }}" class="btn btn-success btn-sm " >
+                '<a href="{{ URL::to(\'/lists/participant/\' . $id . \'/edit\' ) }}" class="btn btn-success btn-sm " >
                 <span class="glyphicon glyphicon-pencil"></span>   </a>')
             ->remove_column('id')
             ->make();

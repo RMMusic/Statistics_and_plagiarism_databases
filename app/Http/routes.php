@@ -14,9 +14,9 @@ header('Access-Control-Allow-Headers:Origin, Content-Type, Accept, Authorization
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,7 @@ header('Access-Control-Allow-Headers:Origin, Content-Type, Accept, Authorization
 |
 */
 
+#auth
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::get('/authorize', 'Auth\AuthController@handleProviderCallback');
@@ -36,14 +37,17 @@ Route::group(['middleware' => ['web']], function () {
 
         #HOME
         Route::get('/', 'HomeController@index');
-        
+
+        #search
+        Route::post('/participantSearch', 'SearchController@participantSearch');
+
         #participant
-        Route::post('/', 'SearchController@index');
-        Route::post('/search', 'ParticipantController@search');
         Route::post('lists/participant/store', 'ParticipantController@store');
         Route::get('lists/participant', 'ParticipantController@index');
         Route::get('lists/participant/data', 'ParticipantController@data');
         Route::get('lists/participant/create', 'ParticipantController@create');
+        Route::get('lists/participant/{participant}/edit', 'ParticipantController@edit');
+        Route::put('lists/participant/{participant}/edit', 'ParticipantController@update');
 
         #statistics
         Route::get('lists/statistics', 'StatisticsController@index');
