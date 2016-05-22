@@ -14,7 +14,7 @@
     @if (isset($services))
     {!! Form::model($services, array('url' => URL::to('lists/statistics') . '/' . $services->id, 'method' => 'PUT', 'class' => 'bf', 'files'=> true)) !!}
     @else
-    {!! Form::open(array('url' => URL::to('lists/statistics'), 'method' => 'UPDATE', 'class' => 'bf', 'files'=> false)) !!}
+    {!! Form::open(array('url' => URL::to('lists/statistics/store'), 'method' => 'UPDATE', 'class' => 'bf', 'files'=> false)) !!}
     @endif
             <!-- Tabs Content -->
     <div class="tab-content row">
@@ -40,16 +40,7 @@
                 </div>
             </div>
 
-            <div class="form-group  {{ $errors->has('phone') ? 'has-error' : '' }}">
-                {!! Form::label('phone', 'Телефон', array('class' => 'control-label')) !!}
-                <div class="input-group">
-                    <div class="input-group-addon {{ $errors->has('phone') ? 'has-error' : '' }}">
-                        <i class="fa fa-phone"></i>
-                    </div>
-                    {!! Form::text('phone', null, array('class' => 'form-control','data-inputmask'=>'\'mask\': \'(999) 999-99-99\'','data-mask'=>'')) !!}
-                </div>
-                <span class="help-block">{{ $errors->first('phone', ':message') }}</span>
-            </div>
+            <input type="hidden" value="" class="participant-id">
 
             <div class="form-group  {{ $errors->has('start_date') ? 'has-error' : '' }}">
                 {!! Form::label('start_date', 'Дата початку', array('class' => 'control-label')) !!}
@@ -137,6 +128,11 @@
                 return repo.name;
             }
 
+            function getId (repo) {
+                $( "participant-id" ).repo.id( value );
+//                return repo.id;
+            }
+
             $(".participant-select2").select2({
                 ajax: {
                     url: "/participantSearch",
@@ -169,7 +165,8 @@
                 escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
                 minimumInputLength: 3,
                 templateResult: formatRepo, // omitted for brevity, see the source of this page
-                templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+                templateSelection: formatRepoSelection, // omitted for brevity, see the source of this page
+                id: getId
             });
         })
     </script>

@@ -8,7 +8,7 @@
     </div>
 
     @if (isset($participant))
-        {!! Form::model($participant, array('url' => URL::to('lists/participant') . '/' . $participant->id, 'method' => 'PUT', 'class' => 'bf', 'files'=> false)) !!}
+        {!! Form::model($participant, array('url' => URL::to('/lists/participant') . '/' . $participant->id .'/edit', 'method' => 'PUT', 'class' => 'bf', 'files'=> true)) !!}
     @else
         {!! Form::open(array('url' => URL::to('lists/participant/store'), 'method' => 'UPDATE', 'class' => 'bf', 'files'=> false)) !!}
     @endif

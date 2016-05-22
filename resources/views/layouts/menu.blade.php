@@ -31,15 +31,14 @@
             <li class="header">Меню</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active">{{link_to('/', $title = 'Головна')}}</li>
-            {{--<li><a href="#"><span>Another Link</span></a></li>--}}
-            <li class="treeview">
-                <a href="#"><span>Списки</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
+            {{--<li class="treeview">--}}
+                {{--<a href="#"><span>Списки</span> <i class="fa fa-angle-left pull-right"></i></a>--}}
+                {{--<ul class="treeview-menu">--}}
                     <li>{{link_to('lists/participant', $title = 'Учасники')}}</li>
                     <li>{{link_to('lists/statistics', $title = 'Статистика')}}</li>
                     <li>{{link_to('lists/plagiarism', $title = 'Плагіат')}}</li>
-                </ul>
-            </li>
+                {{--</ul>--}}
+            {{--</li>--}}
             <li>{{link_to('/options', $title = 'Система')}}</li>
         </ul><!-- /.sidebar-menu -->
     </section>

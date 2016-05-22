@@ -50,6 +50,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::put('lists/participant/{participant}/edit', 'ParticipantController@update');
 
         #statistics
+        Route::post('lists/statistics/store', 'StatisticsController@store');
         Route::get('lists/statistics', 'StatisticsController@index');
         Route::get('lists/statistics/data', 'StatisticsController@data');
         Route::get('lists/statistics/create', 'StatisticsController@create');

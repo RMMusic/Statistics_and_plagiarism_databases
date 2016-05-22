@@ -26,6 +26,31 @@ class StatisticsController extends Controller
         return view('lists.statistics.create_edit', compact('workType','workStatus', 'jobTypeId'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        dd($request);
+        try
+        {
+            $participant = $request->except('_token');
+            WorkModel::create([
+                'name' => $participant['name'],
+                'email' => $participant['email'],
+                'phone' => $participant['phone']
+            ]);
+        }
+        catch(\Exception $e) {
+            return view('exceptions.msg')->with('msg', ' Учасника не збережено');
+        }
+
+        return redirect('/lists/participant');
+    }
+
     public function data()
     {
         $statisticsList = WorkModel::where('job_type_id', '=', WorkModel::STATISTICS_ID)->select(
