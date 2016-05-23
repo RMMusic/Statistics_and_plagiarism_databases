@@ -8,6 +8,12 @@
     <div class="bottom-menu-header">
         <h3>
             Плагіат
+            <div class="pull-right">
+                <div class="pull-right">
+                    <a href="/lists/plagiarism/create"
+                       class="btn btn-sm  btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Додати</a>
+                </div>
+            </div>
         </h3>
     </div>
 
@@ -27,6 +33,7 @@
             <th data-sortable="true" data-filterable="text">% помилок</th>
             <th data-sortable="true" data-filterable="text">Дата закінчення</th>
             <th>Коментарі</th>
+            <th>Дія</th>
         </tr>
         </thead>
         <tbody></tbody>
