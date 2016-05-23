@@ -50,10 +50,13 @@ Route::group(['middleware' => ['web']], function () {
         Route::put('lists/participant/{participant}/edit', 'ParticipantController@update');
 
         #statistics
-        Route::post('lists/statistics/store', 'StatisticsController@store');
+        Route::post('lists/statistics/store', 'WorkController@store');
         Route::get('lists/statistics', 'StatisticsController@index');
         Route::get('lists/statistics/data', 'StatisticsController@data');
         Route::get('lists/statistics/create', 'StatisticsController@create');
+        Route::get('lists/statistics/{work}/edit', 'StatisticsController@edit');
+        Route::get('lists/statistics/{id}/destroy', 'StatisticsController@destroy');
+        Route::put('lists/statistics/{work}/edit', 'StatisticsController@update');
 
         #plagiarism
         Route::get('lists/plagiarism', 'PlagiarismController@index');

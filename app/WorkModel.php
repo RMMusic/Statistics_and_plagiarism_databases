@@ -22,7 +22,7 @@ class WorkModel extends Model
         'work_status_id',
         'plagiarism_percent',
         'errors_percent',
-        'comments'
+        'comment'
     ];
 
     /**

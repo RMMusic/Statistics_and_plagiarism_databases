@@ -33,6 +33,7 @@
             <th data-sortable="true" data-filterable="select">Результат</th>
             <th data-sortable="true" data-filterable="text">Дата закінчення</th>
             <th>Коментарі</th>
+            <th>дія</th>
         </tr>
         </thead>
         <tbody></tbody>

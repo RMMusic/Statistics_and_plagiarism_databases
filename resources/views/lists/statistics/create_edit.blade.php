@@ -11,8 +11,8 @@
         </h3>
     </div>
 
-    @if (isset($services))
-    {!! Form::model($services, array('url' => URL::to('lists/statistics') . '/' . $services->id, 'method' => 'PUT', 'class' => 'bf', 'files'=> true)) !!}
+    @if (isset($thisWork))
+    {!! Form::model($thisWork, array('url' => URL::to('lists/statistics') . '/' . $thisWork->id . '/edit', 'method' => 'PUT', 'class' => 'bf', 'files'=> true)) !!}
     @else
     {!! Form::open(array('url' => URL::to('lists/statistics/store'), 'method' => 'UPDATE', 'class' => 'bf', 'files'=> false)) !!}
     @endif
@@ -20,52 +20,55 @@
     <div class="tab-content row">
         <!-- General tab -->
         <div class="col-xs-12 tab-pane active" id="tab-general">
-
-            {{--<div class="form-group  {{ $errors->has('name') ? 'has-error' : '' }}">--}}
-                {{--{!! Form::label('name', 'Ім\'я', array('class' => 'control-label')) !!}--}}
-                {{--<div class="controls">--}}
-                    {{--{!! Form::text('name', null, array('class' => 'form-control')) !!}--}}
-                    {{--<span class="help-block">{{ $errors->first('name', ':message') }}</span>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-            <div class="form-group {{ $errors->has('participants') ? 'has-error' : '' }}">
-                {!! Form::label('participants', 'Ім\'я', array('class' => 'control-label')) !!}
-                <div class="controls">
-                    <select class="form-control participant-select2">
-                        <option>Введіть ім'я</option>
-                    </select>
-{{--                    {!! Form::select('work_type_id', $workStatus->lists('name', 'id'), 1,array('class' => 'form-control participant-select2')) !!}--}}
-                    <span class="help-block">{{ $errors->first('participants', ':message') }}</span>
-                </div>
-            </div>
-
-            <input type="hidden" value="" class="participant-id">
-
-            <div class="form-group  {{ $errors->has('start_date') ? 'has-error' : '' }}">
-                {!! Form::label('start_date', 'Дата початку', array('class' => 'control-label')) !!}
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
+            @if (!isset($thisWork))
+                <div class="form-group">
+                    {!! Form::label('participants', 'Ім\'я', array('class' => 'control-label')) !!}
+                    <div class="controls">
+                        <select name="participant_id" class="form-control participant-select2">
+                            <option>Введіть ім'я</option>
+                        </select>
                     </div>
-                    {!! Form::date('start_date', \Carbon\Carbon::now(), array('class' => 'form-control','data-inputmask'=>'\'alias\': \'mm/dd/yyyy\'','data-mask'=>'')) !!}
-                    <span class="help-block">{{ $errors->first('start_date', ':message') }}</span>
+                </div>
+            @else
+                <div>
+                    <h3>
+                        {{$participant}}
+                    </h3>
+                </div>
+            @endif
+
+            <div class="form-group  {{ $errors->has('work_them') ? 'has-error' : '' }}">
+                {!! Form::label('work_them', 'Тема', array('class' => 'control-label')) !!}
+                <div class="controls">
+                    {!! Form::text('work_them', null, array('class' => 'form-control')) !!}
+                    <span class="help-block">{{ $errors->first('work_them', ':message') }}</span>
                 </div>
             </div>
 
-            <div class="form-group  {{ $errors->has('work_type_id') ? 'has-error' : '' }}">
+            @if (!isset($thisWork))
+                <div class="form-group">
+                    {!! Form::label('start_date', 'Дата початку', array('class' => 'control-label')) !!}
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        {!! Form::date('start_date', \Carbon\Carbon::now(), array('class' => 'form-control','data-inputmask'=>'\'alias\': \'mm/dd/yyyy\'','data-mask'=>'')) !!}
+                    </div>
+                </div>
+            @endif
+                
+            <div class="form-group">
                 {!! Form::label('work_type_id', 'Вид роботи', array('class' => 'control-label')) !!}
                 <div class="controls">
                     {!! Form::select('work_type_id', $workType->lists('name', 'id'), 1,array('class' => 'form-control')) !!}
-                    <span class="help-block">{{ $errors->first('work_type_id', ':message') }}</span>
                 </div>
             </div>
 
-            <div class="form-group  {{ $errors->has('work_type_id') ? 'has-error' : '' }}">
-                {!! Form::label('work_type_id', 'Результат', array('class' => 'control-label')) !!}
+            <div class="form-group  {{ $errors->has('work_status_id') ? 'has-error' : '' }}">
+                {!! Form::label('work_status_id', 'Результат', array('class' => 'control-label')) !!}
                 <div class="controls">
-                    {!! Form::select('work_type_id', $workStatus->lists('name', 'id'), 1,array('class' => 'form-control')) !!}
-                    <span class="help-block">{{ $errors->first('work_type_id', ':message') }}</span>
+                    {!! Form::select('work_status_id', $workStatus->lists('name', 'id'), 1,array('class' => 'form-control')) !!}
+                    <span class="help-block">{{ $errors->first('work_status_id', ':message') }}</span>
                 </div>
             </div>
 
@@ -90,7 +93,7 @@
 
         </div>
 
-        <input type="hidden" name="job-type" value="{{$jobTypeId}}">
+        <input type="hidden" name="job_type_id" value="{{$jobTypeId}}">
 
         <div class="form-group">
             <div class="col-md-12">
@@ -99,7 +102,7 @@
                 </button>
                 <button type="submit" class="btn btn-sm btn-success">
                     <span class="glyphicon glyphicon-ok-circle"></span>
-                    @if	(isset($services))
+                    @if	(isset($thisWork))
                         Зберегти
                     @else
                         Створити
@@ -128,10 +131,6 @@
                 return repo.name;
             }
 
-            function getId (repo) {
-                $( "participant-id" ).repo.id( value );
-//                return repo.id;
-            }
 
             $(".participant-select2").select2({
                 ajax: {
@@ -166,7 +165,6 @@
                 minimumInputLength: 3,
                 templateResult: formatRepo, // omitted for brevity, see the source of this page
                 templateSelection: formatRepoSelection, // omitted for brevity, see the source of this page
-                id: getId
             });
         })
     </script>

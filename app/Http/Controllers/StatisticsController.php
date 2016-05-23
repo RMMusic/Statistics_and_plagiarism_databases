@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ParticipantModel;
 use App\WorkModel;
 use App\WorkStatusModel;
 use App\WorkTypeModel;
@@ -34,21 +35,59 @@ class StatisticsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $work
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($work)
+    {
+        $participant = ParticipantModel::where('id', WorkModel::where('id', $work)->select('participant_id')
+            ->get()->first()->participant_id)->select('name')->get()->first()->name;
+        $jobTypeId = WorkModel::STATISTICS_ID;
+        $thisWork = WorkModel::find($work);
+        $workType = WorkTypeModel::all();
+        $workStatus = WorkStatusModel::all();
+        return view('lists.statistics.create_edit', compact('thisWork', 'workType', 'workStatus', 'jobTypeId', 'participant'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
         try
         {
-            $participant = $request->except('_token');
-            WorkModel::create([
-                'name' => $participant['name'],
-                'email' => $participant['email'],
-                'phone' => $participant['phone']
-            ]);
+            $statistics = WorkModel::find($id);
+            $statistics->update($request->toArray());
         }
         catch(\Exception $e) {
-            return view('exceptions.msg')->with('msg', ' Учасника не збережено');
+            return view('exceptions.msg')->with('msg', ' Зміни не збережено');
         }
 
-        return redirect('/lists/participant');
+        return redirect('/lists/statistics');
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(WorkModel $id)
+    {
+        $id->delete();
+        return redirect('/lists/statistics');
     }
 
     public function data()
@@ -74,10 +113,9 @@ class StatisticsController extends Controller
             ->edit_column('work_status_id', function($workStatus){
                 return $workStatus->getWorkStatus->name;
             })
-//            ->add_column(get()->first()->getParticipant->phone)
 
-//            ->add_column('actions', '<a href="{{ URL::to(\'services/\' . $id . \'/edit\' ) }}" class="btn btn-success btn-sm " ><span class="glyphicon glyphicon-pencil"></span>   </a>
-//                    <a href="{{{ URL::to(\'services/\' . $id . \'/destroy\' ) }}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> </a>')
+            ->add_column('actions', '<a href="{{ URL::to(\'lists/statistics/\' . $id . \'/edit\' ) }}" class="btn btn-success btn-sm " ><span class="glyphicon glyphicon-pencil"></span>   </a>
+                    <a href="{{{ URL::to(\'lists/statistics/\' . $id . \'/destroy\' ) }}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> </a>')
             ->remove_column('id')
             ->remove_column('job_type_id')
             ->make();
