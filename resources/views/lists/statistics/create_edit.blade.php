@@ -7,7 +7,7 @@
 @section('content')
     <div class="bottom-menu-header">
         <h3>
-            Статистика
+            Статистичні обрахунки
         </h3>
     </div>
 
