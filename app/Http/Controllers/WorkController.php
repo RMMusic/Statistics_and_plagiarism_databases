@@ -37,7 +37,7 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         try
         {
             $request->except('_token');
@@ -47,7 +47,19 @@ class WorkController extends Controller
             return view('exceptions.msg')->with('msg', ' Учасника не збережено');
         }
 
-        return redirect('/lists/participant');
+        $redirect = '';
+        if ($request->job_type_id == WorkModel::STATISTICS_ID){
+            $redirect = '/lists/statistics';
+        }
+        elseif ($request->job_type_id == WorkModel::PLAGIARISM_ID)
+        {
+            $redirect = '/lists/plagiarism';
+        }
+        else
+        {
+            $redirect = '/';
+        }
+        return redirect($redirect);
     }
 
     /**

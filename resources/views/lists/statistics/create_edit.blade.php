@@ -23,7 +23,10 @@
             @if (!isset($thisWork))
                 <div class="form-group">
                     {!! Form::label('participants', 'Ім\'я', array('class' => 'control-label')) !!}
-                    <div class="controls">
+                    <div class="input-group">
+                        <div class="input-group-addon {{ $errors->has('participants') ? 'has-error' : '' }}">
+                            <i class="required-fields fa fa-user-md"></i>
+                        </div>
                         <select name="participant_id" class="form-control participant-select2">
                             <option>Введіть ім'я</option>
                         </select>
@@ -39,7 +42,10 @@
 
             <div class="form-group  {{ $errors->has('work_them') ? 'has-error' : '' }}">
                 {!! Form::label('work_them', 'Тема', array('class' => 'control-label')) !!}
-                <div class="controls">
+                <div class="input-group">
+                    <div class="input-group-addon {{ $errors->has('work_them') ? 'has-error' : '' }}">
+                        <i class="fa fa-file-text"></i>
+                    </div>
                     {!! Form::text('work_them', null, array('class' => 'form-control')) !!}
                     <span class="help-block">{{ $errors->first('work_them', ':message') }}</span>
                 </div>
@@ -50,7 +56,7 @@
                     {!! Form::label('start_date', 'Дата початку', array('class' => 'control-label')) !!}
                     <div class="input-group">
                         <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
+                            <i class="required-fields fa fa-calendar"></i>
                         </div>
                         {!! Form::date('start_date', \Carbon\Carbon::now(), array('class' => 'form-control','data-inputmask'=>'\'alias\': \'mm/dd/yyyy\'','data-mask'=>'')) !!}
                     </div>
@@ -59,16 +65,21 @@
 
             <div class="form-group">
                 {!! Form::label('work_type_id', 'Вид роботи', array('class' => 'control-label')) !!}
-                <div class="controls">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-ambulance"></i>
+                    </div>
                     {!! Form::select('work_type_id', $workType->lists('name', 'id'), 1,array('class' => 'form-control')) !!}
                 </div>
             </div>
 
-            <div class="form-group  {{ $errors->has('work_status_id') ? 'has-error' : '' }}">
+            <div class="form-group">
                 {!! Form::label('work_status_id', 'Результат', array('class' => 'control-label')) !!}
-                <div class="controls">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-thumbs-up"></i>
+                    </div>
                     {!! Form::select('work_status_id', $workStatus->lists('name', 'id'), 1,array('class' => 'form-control')) !!}
-                    <span class="help-block">{{ $errors->first('work_status_id', ':message') }}</span>
                 </div>
             </div>
 
@@ -85,13 +96,18 @@
 
             <div class="form-group  {{ $errors->has('comment') ? 'has-error' : '' }}">
                 {!! Form::label('comment', 'Коментарі', array('class' => 'control-label')) !!}
-                <div class="controls">
+                <div class="input-group">
+                    <div class="input-group-addon {{ $errors->has('name') ? 'has-error' : '' }}">
+                        <i class="fa fa-comment"></i>
+                    </div>
                     {!! Form::text('comment', null, array('class' => 'form-control')) !!}
                     <span class="help-block">{{ $errors->first('comment', ':message') }}</span>
                 </div>
             </div>
 
         </div>
+
+        <div><h3><span class="required-fields">*</span> Обовязкові поля</h3></div>
 
         <input type="hidden" name="job_type_id" value="{{$jobTypeId}}">
 

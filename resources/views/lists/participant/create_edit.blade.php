@@ -21,7 +21,7 @@
                 {!! Form::label('name', 'Ім\'я', array('class' => 'control-label')) !!}
                 <div class="input-group">
                     <div class="input-group-addon {{ $errors->has('name') ? 'has-error' : '' }}">
-                        <i class="required-fields fa fa-user"></i>
+                        <i class="required-fields fa fa-user-md"></i>
                     </div>
                     {!! Form::text('name', null, array('class' => 'form-control', 'placeholder = "Ім\'я"', 'required')) !!}
                     <span class="help-block">{{ $errors->first('name', ':message') }}</span>

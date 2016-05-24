@@ -15,7 +15,7 @@ class StatisticsController extends Controller
 {
     public function index()
     {
-//        $work = WorkModel::all()->first();
+
         return view('lists.statistics.index');
     }
 

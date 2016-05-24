@@ -59,8 +59,13 @@ Route::group(['middleware' => ['web']], function () {
         Route::put('lists/statistics/{work}/edit', 'StatisticsController@update');
 
         #plagiarism
+        Route::post('lists/plagiarism/store', 'WorkController@store');
         Route::get('lists/plagiarism', 'PlagiarismController@index');
         Route::get('lists/plagiarism/data', 'PlagiarismController@data');
+        Route::get('lists/plagiarism/create', 'PlagiarismController@create');
+        Route::get('lists/plagiarism/{work}/edit', 'PlagiarismController@edit');
+        Route::get('lists/plagiarism/{id}/destroy', 'PlagiarismController@destroy');
+        Route::put('lists/plagiarism/{work}/edit', 'PlagiarismController@update');
 
         #system options
         Route::post('options/save', 'OptionsController@save');
