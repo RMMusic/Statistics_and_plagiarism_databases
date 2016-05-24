@@ -15,7 +15,6 @@ class StatisticsController extends Controller
 {
     public function index()
     {
-
         return view('lists.statistics.index');
     }
 
