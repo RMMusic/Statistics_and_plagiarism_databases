@@ -56,7 +56,7 @@
                     </div>
                 </div>
             @endif
-                
+
             <div class="form-group">
                 {!! Form::label('work_type_id', 'Вид роботи', array('class' => 'control-label')) !!}
                 <div class="controls">
