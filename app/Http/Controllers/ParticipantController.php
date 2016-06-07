@@ -40,12 +40,13 @@ class ParticipantController extends Controller
     {
         try
         {
-            $participant = $request->except('_token');
-            ParticipantModel::create([
-                'name' => $participant['name'],
-                'email' => $participant['email'],
-                'phone' => $participant['phone']
-                ]);
+            $request->except('_token');
+            ParticipantModel::create($request->toArray());
+//            ParticipantModel::create([
+//                'name' => $participant['name'],
+//                'email' => $participant['email'],
+//                'phone' => $participant['phone']
+//                ]);
         }
         catch(\Exception $e) {
             return view('exceptions.msg')->with('msg', ' Учасника не збережено');

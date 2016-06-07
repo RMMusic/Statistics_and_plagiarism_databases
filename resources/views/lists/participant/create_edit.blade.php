@@ -32,9 +32,9 @@
                 {!! Form::label('email', '@ Пошта', array('class' => 'control-label')) !!}
                 <div class="input-group">
                     <div class="input-group-addon {{ $errors->has('phone') ? 'has-error' : '' }}">
-                        <i class="fa fa-envelope"></i>
+                        <i class="required-fields fa fa-envelope"></i>
                     </div>
-                    {!! Form::text('email', null, array('class' => 'form-control', 'placeholder = "@"')) !!}
+                    {!! Form::text('email', null, array('class' => 'form-control', 'placeholder = "@"', 'required')) !!}
                     <span class="help-block">{{ $errors->first('email', ':message') }}</span>
                 </div>
             </div>
