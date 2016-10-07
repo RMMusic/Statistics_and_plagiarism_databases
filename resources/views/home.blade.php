@@ -13,6 +13,9 @@
             <img src="img/cs.jpg" alt="Coming soon" style="width:500px">
         </div>
     <br />
+
+    
+
 @endsection
 
 @section('custom-scripts')
